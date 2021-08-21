@@ -48,6 +48,15 @@ app.post('/addpatient',(req,res) =>{
       }
     }
   }
+
+  Patient.create(obj,function(err,Patient){
+    if(!err) console.log('Added successfully')
+  })
+
+  Patient.create(param,function(err,Patient){
+    if(!err) console.log('Added successfully')
+  })
+
 })
 
 app.get('/display', async (req,res)=>{
