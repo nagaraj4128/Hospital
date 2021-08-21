@@ -30,7 +30,23 @@ app.post('/addpatient',(req,res) =>{
     name : param.name,
     age : param.age,
     disease : param.disease,
-    
+    patient_history : param.patient_history,
+    phone : param.phone,
+    details : param.details,
+    next_appointment : param.next_appointment,
+    appointments : {
+      date : param.appointments.date,
+      symptoms : param.appointments.symptoms,
+      fee : param.appointments.fee,
+      notes : param.appointments.notes,
+      medicines : {
+        name : param.appointments.medicines.name,
+        quantity : param.appointments.medicines.quantity,
+        morning : param.appointments.medicines.morning,
+        afternoon : param.appointments.medicines.afternoon,
+        night : param.appointments.medicines.night
+      }
+    }
   }
 })
 
