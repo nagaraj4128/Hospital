@@ -6,9 +6,9 @@ const path = require('path')
 const Patient = require('./models/patient')
 
 mongoose.connect('mongodb://localhost:27017/hospital',{
-useNewUrlParser : true,
-useCreateIndex : true,
-useUnifiedTopology : true
+  useNewUrlParser : true,
+  useCreateIndex : true,
+  useUnifiedTopology : true
 });
 
 const db = mongoose.connection;
@@ -21,7 +21,7 @@ app.set('view engine','ejs');
 app.set('views', path.join(__dirname,'views'));
 
 app.get('/',(req,res)=>{
-res.render('home.ejs');
+  res.render('home.ejs');
 });
 
 app.post('/addpatient',(req,res) =>{
@@ -53,6 +53,8 @@ app.post('/addpatient',(req,res) =>{
     if(!err) console.log('Added successfully')
   })
 
+
+  // lets try this 
   // Patient.create(param,function(err,Patient){
   //   if(!err) console.log('Added successfully')
   // })
@@ -65,7 +67,7 @@ app.get('/display', async (req,res)=>{
 });
  
 app.listen(3000, ()=>{
-console.log("Server on port 3000");
+  console.log("Server on port 3000");
 })
 
 
