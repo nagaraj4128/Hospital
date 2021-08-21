@@ -53,9 +53,9 @@ app.post('/addpatient',(req,res) =>{
     if(!err) console.log('Added successfully')
   })
 
-  Patient.create(param,function(err,Patient){
-    if(!err) console.log('Added successfully')
-  })
+  // Patient.create(param,function(err,Patient){
+  //   if(!err) console.log('Added successfully')
+  // })
 
 })
 
