@@ -27,7 +27,7 @@ app.get('/',(req,res)=>{
 });
 
 app.get('/addpatient',(req,res) =>{
-  res.send('addpatient.ejs');
+  res.render('addpatient.ejs');
 })
 
 app.post('/addpatient',async (req,res) =>{
