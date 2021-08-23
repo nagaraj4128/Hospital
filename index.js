@@ -4,8 +4,10 @@ const mongoose = require('mongoose');
 const app = express();
 const path = require('path')
 const Patient = require('./models/patient')
+const methodOverride = require('method-override')
 
 app.use(express.urlencoded({extended : true}));
+app.use(methodOverride('_method'))
 
 mongoose.connect('mongodb://localhost:27017/hospital',{
   useNewUrlParser : true,
