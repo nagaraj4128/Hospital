@@ -5,6 +5,8 @@ const app = express();
 const path = require('path')
 const Patient = require('./models/patient')
 
+app.use(express.urlencoded({extended : true}));
+
 mongoose.connect('mongodb://localhost:27017/hospital',{
   useNewUrlParser : true,
   useCreateIndex : true,
@@ -24,36 +26,45 @@ app.get('/',(req,res)=>{
   res.render('home.ejs');
 });
 
-app.post('/addpatient',(req,res) =>{
-  var param = req.body;
-  var obj = {
-    name : param.name,
-    age : param.age,
-    disease : param.disease,
-    patient_history : param.patient_history,
-    phone : param.phone,
-    details : param.details,
-    next_appointment : param.next_appointment,
-    appointments : {
-      date : param.appointments.date,
-      symptoms : param.appointments.symptoms,
-      fee : param.appointments.fee,
-      notes : param.appointments.notes,
-      medicines : {
-        name : param.appointments.medicines.name,
-        quantity : param.appointments.medicines.quantity,
-        morning : param.appointments.medicines.morning,
-        afternoon : param.appointments.medicines.afternoon,
-        night : param.appointments.medicines.night
-      }
-    }
-  }
+app.get('/addpatient',(req,res) =>{
+  res.send('addpatient.ejs');
+})
 
-  Patient.create(obj,function(err,Patient){
-    if(!err) console.log('Added successfully')
-  })
+app.post('/addpatient',async (req,res) =>{
+
+  const pat=new Patient(req.body.patient);
+  await pat.save();
 
 
+
+
+  // var param = req.body;
+  // var obj = {
+  //   name : param.name,
+  //   age : param.age,
+  //   disease : param.disease,
+  //   patient_history : param.patient_history,
+  //   phone : param.phone,
+  //   details : param.details,
+  //   next_appointment : param.next_appointment,
+  //   appointments : {
+  //     date : param.appointments.date,
+  //     symptoms : param.appointments.symptoms,
+  //     fee : param.appointments.fee,
+  //     notes : param.appointments.notes,
+  //     medicines : {
+  //       name : param.appointments.medicines.name,
+  //       quantity : param.appointments.medicines.quantity,
+  //       morning : param.appointments.medicines.morning,
+  //       afternoon : param.appointments.medicines.afternoon,
+  //       night : param.appointments.medicines.night
+  //     }
+  //   }
+  // }
+
+  // Patient.create(obj,function(err,Patient){
+  //   if(!err) console.log('Added successfully')
+  // })
   // lets try this 
   // Patient.create(param,function(err,Patient){
   //   if(!err) console.log('Added successfully')
