@@ -9,45 +9,39 @@ db.once('open', function() {
   // we're connected!
 });
 
-// medicine Schema
-const medicine = new Schema({
-name : String,
-quantity: String,
-morning : Number,
-afternoon : Number,
-night : Number
-});
-
-//Appointment Schema that uses medic
-const appointment = new Schema({
-date : Date,
-medicines : [medicine],
-symptoms : String,
-fee : Number,
-notes : String
-});
-
 //final patient schema based on both apppointment and medicine schemas
 const patientSchema = new Schema ({
     name : {
       type : String,
-      required :true
+      // required :true
     },
     age : {
       type : Number,
-      required : [true,'Age is required'],
+      // required : [true,'Age is required'],
       min : [0,'Age cannot be less than 0'],
       max : [140,'Age cannot be greater than 140']
     },
     disease : {
       type : String,
     },
-    pateint_history : String,
+    patient_history : String,
     phone : {
     type: Number,
-    required: true
+    // required: true
     },
-    appointments : [appointment],
+    appointments : [{
+      date : Date,
+      medicines : [{
+        name : String,
+        quantity: String,
+        morning : Number,
+        afternoon : Number,
+        night : Number
+      }],
+      symptoms : String,
+      fee : Number,
+      notes : String
+    }],
     detail : String,
     next_appointment : Date
   });
