@@ -33,10 +33,30 @@ app.get('/addpatient',(req,res) =>{
 })
 
 app.post('/addpatient',async (req,res) =>{
-
   const pat=new Patient(req.body.patient);
   await pat.save();
   res.redirect('/display');
+})
+
+app.get('/searchbyname',(req,res) =>{
+  res.render('searchbyname.ejs');
+})
+
+app.get('/showpatientdetails/:id',(req,res) =>{
+  Patient.findById(req.params.id, (err,person) =>{
+    if(!err){
+      console.log(person);
+      res.render('displaypatient',{person});
+    }
+  });
+})
+
+app.post('/showsearchresults',async (req,res) =>{
+  const name = req.body.patient.name;
+  console.log(name);
+  var thename = name;
+  const names = await Patient.find( { name : { $regex : new RegExp(thename, 'i') } } );
+  res.render('displayresults.ejs',{names});
 })
 
 app.get('/display', async (req,res)=>{
@@ -47,3 +67,7 @@ app.get('/display', async (req,res)=>{
 app.listen(3000, ()=>{
   console.log("Server on port 3000");
 })
+
+
+//git config --global user.name "Nagaraj"
+//
