@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>All patients</title>
-</head>
-<body>
-	<ul>
-		<% patients_list.forEach(pat=>{ %>
-		<li style="font-size: 20px; color: brown;"><%= pat.name %></li>
-		<p style="text-indent:20px;">age : <%= pat.age %></p>
-		<p style="text-indent:20px;">Phone :<%= pat.phone %></p>
-		<p style="text-indent:20px;">disease : <%= pat.disease %></p>
-		<p style="text-indent:20px;">patient_history : <%= pat.patient_history %></p>
-		<p style="text-indent:20px;">detial :<%= pat.detial %></p>
-		<p style="text-indent:20px;">next_appointment :<%= pat.next_appointment %></p>
-		<p style="text-indent:30px; font-size: 20px">Appointments</p>
-			<ol style="background-color: grey">
-			<% pat.appointments.forEach(appointment=>{ %>
-				<p style="text-indent:40px;"><li>Date : <%= appointment.date %></li></p>
-				<p style="text-indent:40px;"><li>Symptoms : <%= appointment.symptoms %></li></p>
-				<p style="text-indent:40px;"><li>Fee : <%= appointment.fee %></li></p>
-				<p style="text-indent:40px;"><li>notes : <%= appointment.notes %></li></p>
-			<% }) %>
-			</ol>
-		<% }) %>
-	</ul>
-</body>
+  <head>
+    <title>All patients</title>
+  </head>
+  <body>
+    <nav><%- include('base') %></nav>
+    <ul>
+      <% patients_list.forEach(pat=>{ %>
+      <li style="font-size: 20px; color: brown"><%= pat.name %></li>
+      <p style="text-indent: 20px">age : <%= pat.age %></p>
+      <p style="text-indent: 20px">Phone :<%= pat.phone %></p>
+      <p style="text-indent: 20px">disease : <%= pat.disease %></p>
+      <p style="text-indent: 20px">
+        patient_history : <%= pat.patient_history %>
+      </p>
+      <p style="text-indent: 20px">detial :<%= pat.detial %></p>
+      <p style="text-indent: 20px">
+        next_appointment :<%= pat.next_appointment %>
+      </p>
+      <p style="text-indent: 30px; font-size: 20px">Appointments</p>
+      <ol style="background-color: grey">
+        <% pat.appointments.forEach(appointment=>{ %>
+        <p style="text-indent: 40px"><li>Date : <%= appointment.date %></li></p>
+        <p style="text-indent: 40px">
+          <li>Symptoms : <%= appointment.symptoms %></li>
+        </p>
+        <p style="text-indent: 40px"><li>Fee : <%= appointment.fee %></li></p>
+        <p style="text-indent: 40px">
+          <li>notes : <%= appointment.notes %></li>
+        </p>
+        <% }) %>
+      </ol>
+      <% }) %>
+    </ul>
+  </body>
 </html>
