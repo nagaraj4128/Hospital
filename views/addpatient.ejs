@@ -9,7 +9,7 @@
 
 </head>
 <body>
-<nav><%- include('base') %></nav>
+  <nav><%- include('base') %></nav>
   <div class="login-box">
     <h2>ADD PATIENT</h2>
     <form action="/addpatient" class="form" method="POST">
@@ -37,10 +37,7 @@
       </div>
       <div class="user-box">
         <p class="xx">First Appointment</p>
-        <br>
-              <br>
       </div>
-      <br>
       <br>
       <div class="user-box">
         <input name="patient[appointments][date]" class="input" type="date" id="">
@@ -55,7 +52,7 @@
         <label class="label" for="">Fee</label>
       </div>
       <div class="user-box">
-        <input name="patient[appointments][notes]" class="input" type="text" id="" required="">
+        <input name="patient[appointments][note]" class="input" type="text" id="" required="">
         <label class="label" for="">Notes</label>
       </div>
 
@@ -67,6 +64,27 @@
         <span></span>
         <span></span> -->
       <!-- <button>Add patient</button> -->
+      Medicine info 
+      <div class="user-box">
+        <input name="patient[appointments][medicines][name]" class="input" type="text" id="">
+        <label class="label" for="">Name/Title</label>
+      </div>
+      <div class="user-box">
+        <input name="patient[appointments][medicines][quantity]" class="input" type="text" id="" required="">
+        <label class="label" for="">quantity</label>
+      </div>
+      <div class="user-box">
+        <input name="patient[appointments][medicines][morning]" class="input" type="number" id="" required="">
+        <label class="label" for="">Morning</label>
+      </div>
+      <div class="user-box">
+        <input name="patient[appointments][medicines][afternoon]" class="input" type="number" id="" required="">
+        <label class="label" for="">Afternoon</label>
+      </div>
+      <div class="user-box">
+        <input name="patient[appointments][medicines][night]" class="input" type="number" id="" required="">
+        <label class="label" for="">Night</label>
+      </div>
       <button type="submit">Add patient</button>
       </a>
     </form>
