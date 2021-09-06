@@ -9,10 +9,36 @@
   <body>
     <nav><%- include('base') %></nav>
     <ul>
-      <li><%=person.name%></li>
-      <li><%=person.age%></li>
-      <li><%=person.phone%></li>
+      <li>Name<%=person.name%></li>
+      <li>Age<%=person.age%></li>
+      <li>Phone<%=person.phone%></li>
+      <li>Disease<%person.disease%></li>
+      <li>patient History <%= person.patient_history %></li>
+      <li>Details <%= person.detial %></li>
+      <li>Next Appointment <%= person.next_appointment %></li>
+      <p>Appointment History</p>
+      <ol style="background-color: grey">
+        <% person.appointments.forEach(appointment=>{ %>
+        <p style="text-indent: 40px"><li>Date : <%= appointment.date %></li></p>
+        <ol style="background-color: grey">
+          <% person.appointments.medicines.forEach(medicines=>{ %>
+          <p style="text-indent: 40px"><li>Name: <%= medicines.name %></li></p>
+          <li>Quantity: <%= medicines.quantity %></li>
+          <li>Morning: <%= medicines.morning %></li>
+          <li>Afternoon: <%= medicines.afternoon %></li>
+          <li>Night: <%= medicines.night %></li>
 
+          <% }) %>
+        </ol>
+        <p style="text-indent: 40px">
+          <li>Symptoms : <%= appointment.symptoms %></li>
+        </p>
+        <p style="text-indent: 40px"><li>Fee : <%= appointment.fee %></li></p>
+        <p style="text-indent: 40px">
+          <li>notes : <%= appointment.notes %></li>
+        </p>
+        <% }) %>
+      </ol>
     </ul>
   </body>
 </html>
