@@ -8,9 +8,17 @@
   </head>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <body>
+    <form action="/addappointment">
+      <input name="date" id="date" type="date" />
+      <input name="impression" id="imp" type="text" />
+    <br> <br>
     <form action="/med">
-      <input name="in" id="input" type="text" />
+      <input name="in" id="name" type="text" />
+      <input name="in1" id="quantity" type="text" />
+      <input name="in" id="" type="text" />
       <button id="add">Add</button>
+    </form>
+    <button id="submit">Submit</button>
     </form>
     <ul></ul>
     <script src="test.js"></script>
