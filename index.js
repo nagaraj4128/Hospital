@@ -10,9 +10,9 @@ var fs = require('fs');
 
 app.use(bodyParser.json());
 
-var myCss = {
-         style : fs.readFileSync('views/test.css','utf8')
-};
+// var myCss = {
+//          style : fs.readFileSync('views/test.css','utf8')
+// };
 app.use(express.urlencoded({extended : true}));
 app.use(methodOverride('_method'))
 app.use(express.static(__dirname + '/views'));
@@ -59,8 +59,15 @@ app.get('/showpatientdetails/:id',(req,res) =>{
   });
 });
 
-app.post('/addappointment',(req,res)=>{
+app.post('/addappointment',async (req,res)=>{
+    const id = req.body.id;
+    console.log(id);
     console.log(req.body);
+    console.log(req.body.medicines);
+    const pat = await Patient.findById(id);
+    pat.appointments.push(req.body);
+    await pat.save();
+    // res.redirect('/displaypatient',pat);
 });
 
 app.post('/showsearchresults',async (req,res) =>{
@@ -70,12 +77,6 @@ app.post('/showsearchresults',async (req,res) =>{
   const names = await Patient.find( { name : { $regex : new RegExp(thename, 'i') } } );
   res.render('displayresults.ejs',{names});
 });
-app.get('/test',(req,res)=>{
-  res.render('test',{
-    title: 'idc',
-    myCss: myCss
-  });
-})
 app.get('/display', async (req,res)=>{
   const patients_list = await Patient.find({});
   res.render('all.ejs',{patients_list});
@@ -86,8 +87,9 @@ app.post('/addmed',async (req,res)=>{
   console.log(req.body);
 })
 
-app.get('/med', async (req,res)=>{
-  res.render('test.ejs');
+app.get('/med/:id', async (req,res)=>{
+  const id = req.params.id;
+  res.render('addappointment.ejs',{id});
 })
 
 app.listen(3000, ()=>{
