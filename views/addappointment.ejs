@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <body>
+    <!-- <nav><%- include('base') %></nav> -->
+    <select name="kuch_bhi" id="kuch_bhi_nahi">
+        <option value="<%=id%>"><%=id%></option>
+    </select>
+    <div>
+      <input name="date" id="date" type="date" />
+      <input name="impression" id="imp" type="text" />
+    <br><br>
+    <div>
+      <input name="in" id="name" type="text" />
+      <input name="in1" id="quantity" type="text" />
+      <button id="butt">Add</button>
+    </div>
+    <button id="submit">Submit</button>
+  </div>
+    <ul></ul>
+    <script>
+      const text = document.getElementById("name");
+const quantity = document.getElementById("quantity");
+const date = document.getElementById("date");
+const impression = document.getElementById("imp");
+const button = document.getElementById("butt");
+const submit = document.getElementById("submit");
+var ul = document.querySelector("ul");
+const id = document.getElementById("kuch_bhi_nahi");
+var arr = [];
+button.addEventListener("click", async (e) => {
+  e.preventDefault();
+  const medicine = text.value; // med name
+  const quant = quantity.value; // quantity
+  console.log(medicine, quant)
+  let obj = { "name": medicine, "quantity": quant }
+  arr.push(obj);
+  var li = document.createElement("li");
+  li.append(document.createTextNode(medicine));
+  li.append(document.createTextNode(quant));
+  ul.appendChild(li);
+  console.log(arr);
+});
+
+submit.addEventListener("click", async (e) => {
+  e.preventDefault();
+  const id1 = id.value;
+  const date_text = date.value; // med name
+  const impvalue = impression.value; // quantity
+  let obj={"date":date_text,"impression":impvalue,"medicines":arr,"id":id1}
+  // let obj={"date":date_text,"impression":impvalue,"medcines":arr};
+  axios.post("http://localhost:3000/addappointment",obj)
+  .then(response => { 
+    console.log(response)
+  })
+  .catch(error => {
+      console.log(error.response)
+  });
+});
+    </script>
+    <script src="addappointment.js"></script>
+  </body>
+</html>
